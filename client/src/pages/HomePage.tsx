@@ -68,7 +68,7 @@ function HomePage() {
   };
 
   const handleCopyToClipboard = () => {
-    if (shortUrl) {
+    if (shortUrl || myOriginalUrl) {
       navigator.clipboard.writeText(shortUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
