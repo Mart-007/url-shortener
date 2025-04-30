@@ -1,0 +1,11 @@
+export const REDIS_CLIENT_ERROR = "Redis Client Error.";
+export const INVALID_URL_FORMAT = "Invalid URL format.";
+export const CUSTOM_SLUG_ALREADY_IN_USE = "Custom slug already in use.";
+export const ERROR_RETRIEVING_URL = "Error retrieving original URL.";
+export const ERROR_CREATING_SHORT_URL = "Error creating short URL.";
+export const FAILED_TO_CREATE_SHORT_URL = "Failed to creare short URL.";
+export const URL_NOT_FOUND_OR_EXPIRED = "URL not found or expired";
+export const URL_DOES_NOT_EXIST = "URL does not exist.";
+export const MISSING_AUTHORIZATION_TOKEN = "Missing authorization token.";
+export const INVALID_AUTH_TOKEN = "Invalid auth token";
+export const INTERNAL_SERVER_ERROR = "Internal server error";
