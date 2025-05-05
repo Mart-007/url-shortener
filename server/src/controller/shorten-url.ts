@@ -3,6 +3,7 @@ import ShortenURLService from "@app/services/shorten-url";
 import { Request, Response } from "express";
 import moment from "moment-timezone";
 import * as MESSAGE from "@app/enums/Messages";
+import { EXPIRED_URL_PAGE } from "@app/enums/ExpiredURLPage";
 
 class shortenURLController {
   private shortenUrlService: ShortenURLService;
@@ -51,11 +52,10 @@ class shortenURLController {
       const shortCode = req.params.shortCode as string;
       const url = await this.shortenUrlService.getOriginalUrl(shortCode);
 
-      if (!url || !url.originalUrl) {
-        res.status(404).send({
-          success: false,
-          message: MESSAGE.URL_NOT_FOUND_OR_EXPIRED,
-        });
+      if (!url || !url.originalUrl) throw ReferenceError(MESSAGE.URL_NOT_FOUND);
+
+      if (moment(url.expiresAt).isBefore(moment())) {
+        res.status(410).send(EXPIRED_URL_PAGE);
         return;
       }
 

@@ -36,18 +36,20 @@ function HomePage() {
 
     setError("");
     setShortUrl("");
+    setLoading(true);
 
     if (!formData.originalUrl) {
       setError(MESSAGE.PLEASE_ENTER_URL);
+      setLoading(false);
       return;
     }
 
     if (!isUrlValid(formData.originalUrl)) {
       setError(MESSAGE.PLEASE_ENTER_VALID_URL);
+      setLoading(false);
       return;
     }
 
-    setLoading(true);
     const params = Object.entries(formData).reduce((acc: any, [key, value]) => {
       if (value) acc[key] = value;
       return acc;
@@ -61,17 +63,18 @@ function HomePage() {
       setLoading(false);
       return;
     }
-
     setShortUrl(response.shortUrl);
     setMyOriginalUrl(response.data.originalUrl);
     setLoading(false);
+    setShowOptions(false);
   };
 
   const handleCopyToClipboard = () => {
+    const copyUrl = isViewMyUrl ? myOriginalUrl : shortUrl;
     if (shortUrl || myOriginalUrl) {
-      navigator.clipboard.writeText(shortUrl);
+      navigator.clipboard.writeText(copyUrl);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), 3000);
     }
   };
 
@@ -84,6 +87,8 @@ function HomePage() {
   };
 
   const handleShotenAnother = () => {
+    setShowOptions(false);
+    setIsViewMyUrl(false);
     setShortUrl("");
     setMyOriginalUrl("");
     setFormData({
