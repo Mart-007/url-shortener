@@ -1,7 +1,7 @@
 .PHONY: install
 
 SERVER_NPM_RUN=cd server && npm run
-# DOCKER_PATH=/Applications/Docker.app/Contents/Resources/bin/docker 
+# DOCKER_PATH=/Applications/Docker.app/Contents/Resources/bin/docker
 
 install:
 	cd client && npm install
