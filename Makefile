@@ -1,14 +1,14 @@
 .PHONY: install
 
 SERVER_NPM_RUN=cd server && npm run
-DOCKER_PATH=/Applications/Docker.app/Contents/Resources/bin/docker
+# DOCKER_PATH=/Applications/Docker.app/Contents/Resources/bin/docker
 
 install:
 	cd client && npm install
 	cd server && npm install
 
 up-dev:
-	$(DOCKER_PATH) compose -f docker-compose.yml up --build
+	docker compose -f docker-compose.yml up --build
 
 down:
 	docker compose -f docker-compose.yml down
